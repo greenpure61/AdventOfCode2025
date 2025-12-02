@@ -8,7 +8,7 @@ Projektet er sat op med fokus på:
 - klar og skalerbar struktur  
 - nem udvidelse med nye dage  
 - genkørsel af hele kalenderen på én gang  
-- én inputfil pr. dag  
+- én inputfil og én beskrivelsesfil pr. dag  
 
 ---
 
@@ -26,10 +26,16 @@ advent_of_code_2025/
 │   ├─ day02_solution.py
 │   └─ ... (én fil pr. dag)
 │
-└─ inputs/
+├─ inputs/
+│   ├─ day01.txt
+│   ├─ day02.txt
+│   └─ ... (én puzzle input pr. dag)
+│
+└─ descriptions/
     ├─ day01.txt
     ├─ day02.txt
-    └─ ... (én inputfil pr. dag)
+    └─ ... (én opgavebeskrivelse pr. dag)
+
 ```
 
 - **`days/`** indeholder én klasse pr. dag (`Day01`, `Day02`, …)  
