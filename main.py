@@ -5,8 +5,6 @@ from pathlib import Path
 
 from days.day01_solution import Day01
 from days.day02_solution import Day02
-# Når du laver day02.py, kan du tilføje:
-# from days.day02 import Day02
 
 PROJECT_ROOT = Path(__file__).parent
 INPUT_DIR = PROJECT_ROOT / "inputs"
@@ -14,7 +12,7 @@ OUTPUT_FILE = PROJECT_ROOT / "results.txt"
 
 
 def run_all_days():
-    # Registrér de dage du har lavet her
+
     days = [
         (1, Day01),
         (2, Day02),
@@ -33,7 +31,7 @@ def run_all_days():
         with input_path.open(encoding="utf-8") as f:
             lines = f.readlines()
 
-        day = day_class(lines)  # <-- instansér klassen
+        day = day_class(lines)
 
         part1 = day.solve_part1()
         part2 = day.solve_part2()
