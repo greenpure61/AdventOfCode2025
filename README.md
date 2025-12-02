@@ -1,60 +1,74 @@
 # 🎄 Advent of Code 2025 – Python Solutions
 
-Dette repository indeholder mine løsninger til *Advent of Code 2025*, organiseret dag-for-dag i et struktureret Python-projekt.  
-Alle opgaver køres samlet via én `main.py`, som samtidig skriver resultaterne til en `results.txt`-fil.
+Dette repository indeholder mine løsninger til **Advent of Code 2025**, organiseret dag-for-dag i et struktureret Python-projekt.  
+Alle opgaver kan køres samlet via `main.py`, som samtidig skriver resultaterne til `results.txt`.
 
 Projektet er sat op med fokus på:
-- klar struktur  
+
+- klar og skalerbar struktur  
 - nem udvidelse med nye dage  
 - genkørsel af hele kalenderen på én gang  
-- separat inputfil pr. dag  
+- én inputfil pr. dag  
 
 ---
 
 ## 📁 Projektstruktur
 
+```text
 advent_of_code_2025/
 │
 ├─ main.py
 ├─ README.md
 │
 ├─ days/
-│ ├─ init.py
-│ ├─ day01_solution.py
-│ ├─ day02_solution.py
-│ └─ ... (én fil pr. dag)
+│   ├─ __init__.py
+│   ├─ day01_solution.py
+│   ├─ day02_solution.py
+│   └─ ... (én fil pr. dag)
 │
 └─ inputs/
-├─ day01.txt
-├─ day02.txt
-└─ ... (én inputfil pr. dag)
+    ├─ day01.txt
+    ├─ day02.txt
+    └─ ... (én inputfil pr. dag)
+```
 
-
-- **`days/`** indeholder én klasse per dag (`Day01`, `Day02`, …).  
-- **`inputs/`** indeholder puzzle-inputtet for hver dag.  
-- **`main.py`** loader alle `DayXX`-klasser, kører `solve_part1()` og `solve_part2()`, og gemmer resultaterne i `results.txt`.
+- **`days/`** indeholder én klasse pr. dag (`Day01`, `Day02`, …)  
+- **`inputs/`** indeholder puzzle input for hver dag  
+- **`main.py`** loader alle dag-klasser, kører dem og skriver resultater til `results.txt`  
 
 ---
 
 ## ▶️ Kør løsningerne
 
-Projektet kører med Python 3.10+.
+Projektet kræver **Python 3.10+**.
 
-1. Installér dependencies (ingen nødvendige, men et virtual environment anbefales):
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+### 1. Opret virtual environment (valgfrit, men anbefales)
 
+```bash
+python -m venv .venv
+# Windows:
+.venv\Scripts\activate
+# Mac/Linux:
+source .venv/bin/activate
+```
 
-2. Kør alle dage:
+### 2. Kør alle dage
+
+```bash
 python main.py
+```
 
+### 3. Resultater
 
-3. Resultaterne gemmes automatisk i:
+Output skrives til:
+
+```
 results.txt
+```
 
+Formatet:
 
-Format i filen:
+```
 Day 01 - Part 1: xxxx
 Day 01 - Part 2: xxxx
 
@@ -62,29 +76,35 @@ Day 02 - Part 1: xxxx
 Day 02 - Part 2: xxxx
 
 ...
+```
 
-➕ Tilføj en ny dag
+---
 
-Opret en ny fil i days/, fx:
+## ➕ Tilføj en ny dag
 
+### 1. Opret en ny fil i `days/`
+
+```
 days/day03_solution.py
+```
 
+### 2. Tilføj en klasse
 
-Lav en klasse med følgende struktur:
-
+```python
 class Day03:
     def __init__(self, lines):
-        self.lines = [l.strip() for l in lines]
+        self.lines = [line.strip() for line in lines]
 
     def solve_part1(self):
-        return 0
+        return 0  # TODO
 
     def solve_part2(self):
-        return 0
+        return 0  # TODO
+```
 
+### 3. Registrér dagen i `main.py`
 
-Tilføj den i main.py:
-
+```python
 from days.day03_solution import Day03
 
 days = [
@@ -92,31 +112,42 @@ days = [
     (2, Day02),
     (3, Day03),
 ]
+```
 
+### 4. Opret inputfil
 
-Tilføj puzzle-input:
-
+```
 inputs/day03.txt
+```
 
+Kør `python main.py` igen — done.
 
-Run again — done.
+---
 
-🧠 Designfilosofi
+## 🧠 Designfilosofi
 
-Klasse-baseret struktur:
-Hver dag er indkapslet i én klasse, hvilket gør det nemt at holde parsing, del 1 og del 2 samlet.
+### Klasse-baseret struktur
+Hver dag har sin egen klasse, så parsing, part 1 og part 2 holdes samlet og overskueligt.
 
-Modulær opsætning:
-main.py er ansvarlig for orchestration, logging og output.
+### Modulær og udvidbar opsætning
+`main.py` fungerer som entry point og håndterer:
 
-Performance-venlig:
-Selv opgaver med store ranges (Day 2) genereres effektivt ved at beregne strukturerede tal i stedet for brute-force loops.
+- loading af inputs  
+- instansiering af dag-klasser  
+- kørsel af part 1 & 2  
+- output til `results.txt`
 
-⭐ Advent of Code
+### Performance-venlig
+Selv dage med store ranges (fx Day 2) er optimeret via matematisk generering frem for brute force iteration.
 
-Opgaverne kommer fra:
-https://adventofcode.com/2025
+---
 
-(support the creator!)
+## ⭐ Advent of Code
 
-God kodejagt og glædelig jul! 🎅✨
+Opgaverne kommer fra:  
+https://adventofcode.com/2025  
+*(support the creator!)*
+
+---
+
+**Glædelig jul — og god kodejagt 🎅✨**
